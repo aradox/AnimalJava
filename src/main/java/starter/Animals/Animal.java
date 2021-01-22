@@ -1,15 +1,17 @@
 package starter.Animals;
 
 import lombok.Data;
+import starter.Interfaces.ISellable;
 
 import java.util.Date;
 
 @Data
-public abstract class Animal {
+public abstract class Animal implements ISellable {
 
     private String Name;
     private Gender Gender;
     private Reservor ReservedBy;
+    private double price;
 
     public Animal(String name, Gender gender)
     {

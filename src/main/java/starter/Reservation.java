@@ -13,6 +13,7 @@ import java.util.List;
 public class Reservation {
 
     private List<Animal> Animals;
+    private int amountOfDogs = 0;
 
     public Reservation() {
         Animals = new ArrayList<>();
@@ -24,7 +25,9 @@ public class Reservation {
 
     public void NewDog(String name, Gender gender)
     {
-        this.Animals.add(new Dog(name, gender));
+        this.amountOfDogs = this.amountOfDogs + 1;
+        this.Animals.add(new Dog(name, gender, this.amountOfDogs));
+
     }
 
 }

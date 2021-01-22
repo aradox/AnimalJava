@@ -11,22 +11,32 @@ import javafx.scene.input.MouseEvent;
 import starter.Animals.Animal;
 import starter.Animals.Animals;
 import starter.Animals.Gender;
+import starter.Interfaces.ISellable;
+import starter.Interfaces.IWebShop;
+import starter.Products.Bottle;
+import starter.Products.Pen;
+import starter.Products.Product;
 import starter.Reservation;
+import starter.Services.WebShop;
 
 import java.net.URL;
 import java.util.ResourceBundle;
 
 public class ShelterController implements Initializable {
 
+
     private Reservation reservation;
+    private IWebShop webshop;
     private Animals currSpecies = Animals.CAT;
     private String name = "";
     private String badHabbits = "";
     private Gender gender;
     private Animal selectedAnimal;
+    private ISellable selectedProduct;
 
     public ShelterController() {
         this.reservation = new Reservation();
+        this.webshop = new WebShop();
     }
 //    @FXML // ResourceBundle that was given to the FXMLLoader
 //    private ResourceBundle resources;
@@ -37,6 +47,11 @@ public class ShelterController implements Initializable {
     @FXML // fx:id="speciesChoice"
     private ChoiceBox<String> speciesChoice;
 
+    @FXML
+    public ChoiceBox<String> productChoice;
+
+    @FXML
+    private Button buyBtn;
     @FXML
     private Button addAnimalBtn;
 
@@ -53,10 +68,31 @@ public class ShelterController implements Initializable {
     @FXML
     ListView<Animal> animalList;
 
+    @FXML
+    ListView<ISellable> productList;
+
     @FXML // This method is called by the FXMLLoader when initialization is complete
     public void initialize(URL location, ResourceBundle resources) {
         speciesChoice.getItems().setAll("Cat", "Dog");
         speciesChoice.setValue("Cat");
+
+        productChoice.getItems().setAll("Bottle", "Pen");
+        productChoice.setValue("Bottle");
+        selectedProduct = new Bottle("Bottle", 50);
+
+        productChoice.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<String>() {
+            @Override
+            public void changed(ObservableValue<? extends String> selected, String old, String newProduct) {
+                var type = getCurrProduct(productChoice.getValue());
+                selectedProduct = type;
+                if (old != null) {
+
+                }
+                if (newProduct != null) {
+
+                }
+            }
+        });
 
 
         speciesChoice.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<String>() {
@@ -64,27 +100,6 @@ public class ShelterController implements Initializable {
             public void changed(ObservableValue<? extends String> selected, String oldSpecies, String newSpecies) {
                 var type = getCurrSpecies(speciesChoice.getValue());
                 currSpecies = type;
-                if (oldSpecies != null) {
-                    switch(oldSpecies) {
-                        case "Cat":
-                            currSpecies = Animals.CAT;
-                            break;
-                        case "Dog":
-                            currSpecies = Animals.DOG;
-                            break;
-
-                    }
-                }
-                if (newSpecies != null) {
-                    switch(newSpecies) {
-                        case "Cat":
-                            currSpecies = Animals.CAT;
-                            break;
-                        case "Dog":
-                            currSpecies = Animals.DOG;
-                            break;
-                    }
-                }
             }
         });
         
@@ -94,10 +109,12 @@ public class ShelterController implements Initializable {
                 if(t1 != null){
                     selectedAnimal = t1;
                     selectedName.setText(t1.getName());
+                    selectedProduct = t1;
                     return;
                 }
                 if(animal != null){
                     selectedAnimal = animal;
+                    selectedProduct = animal;
                     selectedName.setText(animal.getName());
                 }
 
@@ -127,11 +144,15 @@ public class ShelterController implements Initializable {
 
     @FXML
     public void reserveAnimalBtnClicked(MouseEvent mouseEvent) {
-
         this.selectedAnimal.Reserve(this.reserverName.getText());
+        this.webshop.AddToCart(this.selectedAnimal);
         this.UpdateView();
-        var x = reservation;
-        var y =1;
+    }
+
+    @FXML
+    public void addProductBtnClicked(MouseEvent mouseEvent) {
+        this.webshop.AddToCart(this.selectedProduct);
+        this.UpdateView();
     }
 
     public Animals getCurrSpecies(String name) {
@@ -145,9 +166,26 @@ public class ShelterController implements Initializable {
         }
     }
 
+    public Product getCurrProduct(String name) {
+        switch(name){
+            case "Bottle":
+                return new Bottle("Bottle", 50);
+            case "Pen":
+                return new Pen("Pen", 10);
+            default:
+                return null;
+        }
+    }
+
+
+
     public void UpdateView(){
-        ObservableList<Animal> items = FXCollections.observableArrayList();
-        items.addAll(this.reservation.getAnimals());
-        animalList.setItems(items);
+        ObservableList<Animal> oAnimals = FXCollections.observableArrayList();
+        oAnimals.addAll(this.reservation.getAnimals());
+        animalList.setItems(oAnimals);
+
+        ObservableList<ISellable> oProducts = FXCollections.observableArrayList();
+        oProducts.addAll(this.webshop.getItemsInCart());
+        productList.setItems(oProducts);
     }
 }

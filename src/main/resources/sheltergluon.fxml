@@ -5,9 +5,9 @@
 
 <VBox prefHeight="400.0" prefWidth="640.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="starter.shelter.ShelterController">
   <children>
-    <AnchorPane maxHeight="-1.0" maxWidth="-1.0" prefHeight="-1.0" prefWidth="-1.0" VBox.vgrow="ALWAYS">
+    <AnchorPane maxHeight="-1.0" maxWidth="-1.0" prefHeight="481.0" prefWidth="640.0" VBox.vgrow="ALWAYS">
       <children>
-            <ListView fx:id="animalList" layoutX="252.0" layoutY="46.0" prefHeight="172.0" prefWidth="359.0" />
+            <ListView fx:id="animalList" layoutX="252.0" layoutY="46.0" prefHeight="86.0" prefWidth="359.0" />
             <RadioButton layoutX="58.0" layoutY="131.0" mnemonicParsing="false" prefHeight="17.0" prefWidth="59.0" text="Male">
                <toggleGroup>
                   <ToggleGroup fx:id="toggleGroup1" />
@@ -27,11 +27,14 @@
             <Label layoutX="15.0" layoutY="231.0" text="Bad Habits" />
             <Button fx:id="addAnimalBtn" layoutX="15.0" layoutY="327.0" mnemonicParsing="false" onMouseClicked="#AddAnimalBtnClicked" prefHeight="25.0" prefWidth="193.0" text="Add Animal" />
             <Label layoutX="252.0" layoutY="23.0" text="Animals" />
-            <TextField fx:id="reserverName" layoutX="347.0" layoutY="244.0" />
-            <Label layoutX="252.0" layoutY="248.0" text="Reserver Name" />
-            <Label layoutX="252.0" layoutY="223.0" text="Reseve animal" />
-            <Button fx:id="reserveBtn" layoutX="517.0" layoutY="244.0" mnemonicParsing="false" onMouseClicked="#reserveAnimalBtnClicked" prefHeight="25.0" prefWidth="94.0" text="Reserve" />
-            <Label fx:id="selectedName" layoutX="347.0" layoutY="223.0" text="AnimalName" />
+            <TextField fx:id="reserverName" layoutX="347.0" layoutY="170.0" />
+            <Label layoutX="252.0" layoutY="174.0" text="Reserver Name" />
+            <Label layoutX="252.0" layoutY="149.0" text="Reseve animal" />
+            <Button fx:id="reserveBtn" layoutX="517.0" layoutY="170.0" mnemonicParsing="false" onMouseClicked="#reserveAnimalBtnClicked" prefHeight="25.0" prefWidth="94.0" text="Reserve" />
+            <Label fx:id="selectedName" layoutX="347.0" layoutY="149.0" text="AnimalName" />
+            <ChoiceBox fx:id="productChoice" layoutX="245.0" layoutY="227.0" prefWidth="150.0" />
+            <Button fx:id="buyBtn"  onMouseClicked="#addProductBtnClicked" layoutX="517.0" layoutY="227.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="94.0" text="Buy" />
+            <ListView fx:id="productList" layoutX="247.0" layoutY="271.0" prefHeight="122.0" prefWidth="359.0" />
       </children>
     </AnchorPane>
   </children>
