@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane fx:id="anchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="280.0" prefWidth="420.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="starter.messenger.MessengerController">
+   <children>
+      <Label fx:id="labelRandomMessage" alignment="CENTER" layoutX="26.0" layoutY="140.0" prefHeight="17.0" prefWidth="369.0" textAlignment="CENTER" />
+      <Button fx:id="buttonGetRandomMessage" layoutX="158.0" layoutY="96.0" mnemonicParsing="false" onMouseClicked="#buttonGetRandomMessageClicked" text="Get Message" />
+   </children>
+</AnchorPane>

@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<VBox prefHeight="400.0" prefWidth="640.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="starter.shelter.ShelterController">
+  <children>
+    <AnchorPane maxHeight="-1.0" maxWidth="-1.0" prefHeight="-1.0" prefWidth="-1.0" VBox.vgrow="ALWAYS">
+      <children>
+            <ListView fx:id="animalList" layoutX="252.0" layoutY="46.0" prefHeight="172.0" prefWidth="359.0" />
+            <RadioButton layoutX="58.0" layoutY="131.0" mnemonicParsing="false" prefHeight="17.0" prefWidth="59.0" text="Male">
+               <toggleGroup>
+                  <ToggleGroup fx:id="toggleGroup1" />
+               </toggleGroup>
+            </RadioButton>
+            <RadioButton layoutX="131.0" layoutY="131.0" mnemonicParsing="false" prefHeight="17.0" prefWidth="76.0" text="Female">
+                <toggleGroup>
+                    <fx:reference source="toggleGroup1" />
+                </toggleGroup>
+            </RadioButton>
+            <TextField fx:id="animalName" layoutX="58.0" layoutY="89.0" />
+            <Label layoutX="14.0" layoutY="93.0" text="Name" />
+            <ChoiceBox fx:id="speciesChoice" layoutX="58.0" layoutY="46.0" prefWidth="150.0" />
+            <Label layoutX="14.0" layoutY="50.0" text="Species" />
+            <Label layoutX="15.0" layoutY="131.0" text="Gender" />
+            <TextField fx:id="badHabits" layoutX="15.0" layoutY="256.0" prefHeight="51.0" prefWidth="193.0" />
+            <Label layoutX="15.0" layoutY="231.0" text="Bad Habits" />
+            <Button fx:id="addAnimalBtn" layoutX="15.0" layoutY="327.0" mnemonicParsing="false" onMouseClicked="#AddAnimalBtnClicked" prefHeight="25.0" prefWidth="193.0" text="Add Animal" />
+            <Label layoutX="252.0" layoutY="23.0" text="Animals" />
+            <TextField fx:id="reserverName" layoutX="347.0" layoutY="244.0" />
+            <Label layoutX="252.0" layoutY="248.0" text="Reserver Name" />
+            <Label layoutX="252.0" layoutY="223.0" text="Reseve animal" />
+            <Button fx:id="reserveBtn" layoutX="517.0" layoutY="244.0" mnemonicParsing="false" onMouseClicked="#reserveAnimalBtnClicked" prefHeight="25.0" prefWidth="94.0" text="Reserve" />
+            <Label fx:id="selectedName" layoutX="347.0" layoutY="223.0" text="AnimalName" />
+      </children>
+    </AnchorPane>
+  </children>
+</VBox>
