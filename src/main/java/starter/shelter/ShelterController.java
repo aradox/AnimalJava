@@ -11,12 +11,14 @@ import javafx.scene.input.MouseEvent;
 import starter.Animals.Animal;
 import starter.Animals.Animals;
 import starter.Animals.Gender;
+import starter.Interfaces.IProductFactory;
 import starter.Interfaces.ISellable;
 import starter.Interfaces.IWebShop;
 import starter.Products.Bottle;
 import starter.Products.Pen;
 import starter.Products.Product;
 import starter.Reservation;
+import starter.Services.ProductFactory;
 import starter.Services.WebShop;
 
 import java.net.URL;
@@ -27,6 +29,7 @@ public class ShelterController implements Initializable {
 
     private Reservation reservation;
     private IWebShop webshop;
+    private IProductFactory productFactory;
     private Animals currSpecies = Animals.CAT;
     private String name = "";
     private String badHabbits = "";
@@ -37,6 +40,7 @@ public class ShelterController implements Initializable {
     public ShelterController() {
         this.reservation = new Reservation();
         this.webshop = new WebShop();
+        this.productFactory = new ProductFactory();
     }
 //    @FXML // ResourceBundle that was given to the FXMLLoader
 //    private ResourceBundle resources;
@@ -167,14 +171,7 @@ public class ShelterController implements Initializable {
     }
 
     public Product getCurrProduct(String name) {
-        switch(name){
-            case "Bottle":
-                return new Bottle("Bottle", 50);
-            case "Pen":
-                return new Pen("Pen", 10);
-            default:
-                return null;
-        }
+        return this.productFactory.getProduct(name);
     }
 
 
